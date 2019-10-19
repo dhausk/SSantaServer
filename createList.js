@@ -2,9 +2,9 @@
 //* person has a non repeating person to gift too and not them selves. 
 
 module.exports = function (options) {
-  return function (req, next) {
-    req.list = listRando(req.body.peoples)
-    next()
+  return function (req, res, next) {
+    req.randoList = listRando(req.body.peoples);
+    next();
   }
   function listRando(list) { 
     var names = list;
