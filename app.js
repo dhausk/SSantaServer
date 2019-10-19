@@ -8,30 +8,43 @@ const nodemailer = require("nodemailer");
 const valid = require("./validate");
 const list = require("./createList");
 const emailObj= require("./emailObj");
+
 app.disable('x-powered-by')
 
 app.use(morgan('dev'));
 app.use(cors());
 app.use(bodyParser.json());
-app.get('/', (req, res, next) => {
-  res.json({ message: 'welcometo the form server.' })
-})
 
-app.use(valid());
-app.use(list());
-app.use(emailObj());
+app.use('/form', valid());
+app.use('/form', list());
+app.use('/form', emailObj());
+
+
+
 
 app.post('/form', (req, res, next) => {
+// Transporter set up
+  let transporter = nodemailer.createTransport({
+    jsonTransport: true
+  });
+  // check if form submittal is valid
   if (req.valid) {
-    req.list;
-    req.emailObj;
-    // req.emailQue.map()
-    
-    res.json({message: 'good job it likes email que'})
+    // map over email que and send the emails
+    req.emailQue.map(email => {
+       // send mail with defined transport object
+      transporter.sendMail(email, (err, info) => {
+        console.log(info.envelope);
+        console.log(info.messageId);
+        console.log(info.message); // JSON string
+      });
+    })
+    // send success message
+    res.status(200).json('success')
 
   } else {
     next(new Error(`nope it didn't take.`))
   }
+ 
 })
 
 app.use(function (err, req, res, next) {
