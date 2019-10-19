@@ -1,11 +1,16 @@
+// takes in an array of object pairs of people and email adresses. as well as
+// the gift limit and whether or not to create a master list for the admins.
+// returns an array of email objects 
+
 module.exports = function (options) {
-  return function (req, next) {
-    req.emailQue = createEmailQue(req.list, req.body.giftLimit, req.body.showData);
+  return function (req, res, next) {
+    req.emailQue = createEmailQue(req.randoList, req.body.giftLimit, req.body.showData);
+    console.log(req.emailQue);
     next()
   }
   function createEmailQue(list, giftLimit, showData) {
     let messageArr = createMessage(list, giftLimit); //returns a array of messages
-    if(showData) {//if the show data emails
+    if(showData) {   //if the show data emails
       messageArr.push(createMasterListEmail(list, giftLimit)); //returns array master list emails
     }
     return messageArr
@@ -51,7 +56,7 @@ module.exports = function (options) {
     }, "")
   }
   function findAdmin(pair) {
-    if (pair.a.admin == true) {
+    if (pair.a.admin === true) {
       return pair.a;
     }
   }
