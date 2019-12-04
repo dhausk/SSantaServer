@@ -4,21 +4,21 @@ module.exports = function (options) {
     req.valid = validForm(req.body);   
     next()
   }
-  function validForm(state) {
+  function validForm(body) {
     // check each part of the form to make sure it is correct. 
-    const size = state.groupSize >= 3;
-    const show = typeof state.showData == 'boolean';
-    const groupAdmin = propGroupAdmin(state.peoples);
+    const size = body.groupSize >= 3;
+    const show = typeof body.showData == 'boolean';
+    const groupAdmin = propGroupAdmin(body.peoples);
     return size && show && groupAdmin;
   }
   
   function propGroupAdmin(peoples) {
     let admin = 0;
-    for (let i = 0; i < peoples.length; i++) {
-      if (peoples[i].admin == true) {
+    peoples.forEach(peep => {
+      if(peep.admin === true){
         admin += 1;
-      };
-    }
+      }
+    });
     return (admin >= 1 && admin <=10) ? true : false;
   } 
 }
