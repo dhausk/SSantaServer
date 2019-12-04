@@ -6,9 +6,9 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const app = express();
 const nodemailer = require("nodemailer");
-const valid = require("./validate");
-const list = require("./createList");
-const emailObj= require("./emailObj");
+const valid = require("./MiddleWare/validate");
+const list = require("./MiddleWare/createList");
+const emailObj= require("./MiddleWare/emailObj");
 
 
 app.disable('x-powered-by')
