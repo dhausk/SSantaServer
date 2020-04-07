@@ -1,7 +1,7 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "server of my SSanta generator",
+  "description": "Server side of my secret santa generator",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
@@ -16,7 +16,7 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "morgan": "^1.9.1",
-    "nodemailer": "^6.3.1"
+    "nodemailer": "^6.4.0"
   },
   "devDependencies": {
     "nodemon": "^1.19.4"

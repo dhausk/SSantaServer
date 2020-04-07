@@ -17,7 +17,7 @@ module.exports = function (options) {
   function createMessage(list, giftLimit) {
     return list.map((curPair) => {
       return {
-        from: 'dhassick@gmail.com', // my email server address
+        from: 'dhassick@yahoo.com', // my email server address
         to: `${curPair.a.email}`,  // The santa's email
         subject: 'SSanta Gift Exchange drawing',
         text: `You drew ${curPair.b.name} for the Gift Exchange. The gift limit is set at ${giftLimit}.`,
@@ -33,7 +33,7 @@ module.exports = function (options) {
     let masterListHTML = createMasterListHTML(list);// return a master list as a sting of html p tags
     
     return {
-      from: 'dhassick@gmail.com', // my email server address
+      from: 'dhassick@yahoo.com', // my email server address
       to: `${admin.email}`,  // The admins email
       subject: `Your SSanta Gift Exchange drawing master list.`,
       text: ` The gift limit is set at ${giftLimit}.
